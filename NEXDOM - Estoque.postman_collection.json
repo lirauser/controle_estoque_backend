@@ -1,0 +1,734 @@
+{
+	"info": {
+		"_postman_id": "f76cab54-bce5-4d5a-8e47-e8dc855825ef",
+		"name": "NEXDOM - Estoque",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15887061"
+	},
+	"item": [
+		{
+			"name": "TipoProdutos",
+			"item": [
+				{
+					"name": "Criar tipo de produto",
+					"request": {
+						"auth": {
+							"type": "basic"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Movel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tipoProdutos/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tipoProdutos",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar tipo de produtos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Eletronico\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tipoProdutos/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tipoProdutos",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar tipo de produto por id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar tipo de produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Videogame\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tipoProdutos/update/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tipoProdutos",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover tipo de produto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Videogame\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tipoProdutos/delete/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tipoProdutos",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fornecedores",
+			"item": [
+				{
+					"name": "Criar fornecedor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_fornecedor\": \"Peçanha Moveis\",\r\n    \"contato\": \"pecanha@gmail.com\",\r\n    \"endereco\": \"Av. Complexa Km 222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/fornecedores/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"fornecedores",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar fornecedores",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeFornecedor\": \"José da Silva\",\r\n    \"contato\": \"josesilva@hotmail.com\",\r\n    \"endereco\": \"Rua das Couves 89\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/fornecedores/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"fornecedores",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar fornecedor por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeFornecedor\": \"José da Silva\",\r\n    \"contato\": \"josesilva@hotmail.com\",\r\n    \"endereco\": \"Rua das Couves 89\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/fornecedores/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"fornecedores",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar fornecedor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeFornecedor\": \"José da Silva\",\r\n    \"contato\": \"josesilva@hotmail.com\",\r\n    \"endereco\": \"Rua das Couves 89\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/fornecedores/update/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"fornecedores",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover fornecedor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeFornecedor\": \"José da Silva\",\r\n    \"contato\": \"josesilva@hotmail.com\",\r\n    \"endereco\": \"Rua das Couves 89\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/fornecedores/delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"fornecedores",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Salvar produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": "/C:/Users/lira/Desktop/produtos/eletrodomestico1.jpeg"
+								},
+								{
+									"key": "name",
+									"value": "Batedeira",
+									"type": "text"
+								},
+								{
+									"key": "preco",
+									"value": "120",
+									"type": "text"
+								},
+								{
+									"key": "qtdEstoque",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "tipoProdutoId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Uma batedeira verde da ARNO",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/produtos/add?imageFile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos",
+								"add"
+							],
+							"query": [
+								{
+									"key": "imageFile",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar produtos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Movel\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/produtos/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar produto por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Movel\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/produtos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar produto",
+					"request": {
+						"auth": {
+							"type": "basic"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Batedeira 2",
+									"type": "text"
+								},
+								{
+									"key": "produtoId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/produtos/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover produto",
+					"request": {
+						"auth": {
+							"type": "basic"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Batedeira 2",
+									"type": "text"
+								},
+								{
+									"key": "produtoId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/produtos/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar produto por nome",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/produtos/search?input=computador",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"produtos",
+								"search"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "computador"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transacoes",
+			"item": [
+				{
+					"name": "Entrada estoque",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"produtoId\": \"2\",\r\n    \"fornecedorId\": \"3\",\r\n    \"qtd\": \"30\",\r\n    \"descricao\": \"Adicionando 30 computadores.\",\r\n    \"nota\": \"Aguardando chegar mais.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/transactions/compra",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transactions",
+								"compra"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vender produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"produtoId\": \"2\",    \r\n    \"qtd\": \"10\",\r\n    \"descricao\": \"Vendendo 15 computadores.\",\r\n    \"nota\": \"preços em conta.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/transactions/venda",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transactions",
+								"venda"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retorna produto para fornecedor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/transactions/retorna",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transactions",
+								"retorna"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter transações",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/transactions/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transactions",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter transacao por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/transactions/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transactions",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por mes e ano",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/transactions/mes-ano?month=10&year=2024",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transactions",
+								"mes-ano"
+							],
+							"query": [
+								{
+									"key": "month",
+									"value": "10"
+								},
+								{
+									"key": "year",
+									"value": "2024"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar status transacao",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"CONCLUÍDO\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/transactions/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transactions",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
