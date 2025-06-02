@@ -34,4 +34,4 @@ INSTALANDO E EXECUTANDO O FRONTEND:
 AMBIENTE DE TESTE: 
 (Foi utilizado o Postman para testes de API)
 1) Baixe a plataforma em: postman.com.
-2) Com ambos o backend e o frontend rodando, pegue o arquivo "NEXDOM - Estoque.postman_collection" no repositório controle_estoque_backend e importe no Postman, clicando no botão <Import> acima da tela.
+2) Com ambos o backend e o frontend rodando, utilize o arquivo "NEXDOM - Estoque.postman_collection" e importe no Postman, clicando no botão <Import> acima da tela.
