@@ -39,12 +39,11 @@ public class TransactionController {
     public ResponseEntity<Resposta> returnToSupplier(@RequestBody @Valid TransactionRequest transactionRequest) {
         return ResponseEntity.ok(transactionService.returnToFornecedor(transactionRequest));
     }
-
+    
     @GetMapping("/all")
-    public ResponseEntity<Resposta> getAllTransactions(            
-            @RequestParam(required = false) String filter) {
-        System.out.println("O valor buscado é: " + filter);
-        return ResponseEntity.ok(transactionService.getAllTransactions(filter));
+    public ResponseEntity<Resposta> getAllTransactions(@RequestParam(required = false) String filter) {
+      System.out.println("O valor buscado é: " + filter);
+      return ResponseEntity.ok(transactionService.getAllTransactions(filter));
     }
 
     @GetMapping("/{id}")

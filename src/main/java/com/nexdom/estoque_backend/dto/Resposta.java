@@ -11,18 +11,10 @@ import lombok.Data;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Resposta {
+public class Resposta {	
 	
-	//genérico
 	private int status;
-	private String mensagem;
-	
-	//para login	
-	private String horaExpiracao;
-	
-	//para paginação
-	private Integer totalPaginas;
-	private Long totalElementos;	
+	private String mensagem;			
 	
 	private FornecedorDTO fornecedor;
 	private List<FornecedorDTO> fornecedores;

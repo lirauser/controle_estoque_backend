@@ -32,7 +32,7 @@ public class Transaction {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name = "total_produtos")
 	private Integer totalProdutos;

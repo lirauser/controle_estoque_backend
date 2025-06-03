@@ -17,10 +17,10 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TipoProdutoDTO {	
 	
-	private long id;
+	private Long id;
 	
-	@NotBlank(message = "Nome é obrigatório.")
-	private String nome;	
+	@NotBlank(message = "Nome do produto é obrigatório.")
+	private String nome;
 	
 	private List<ProdutoDTO> produtos;
 

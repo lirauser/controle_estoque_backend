@@ -29,7 +29,7 @@ public class Produto {
 		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private long id;	
+	private Long id;	
 	
 	@NotBlank(message = "Produto é obrigatório.")
 	private String name;	

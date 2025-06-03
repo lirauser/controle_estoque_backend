@@ -6,10 +6,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -152,7 +149,8 @@ public class TransactionServiceImpl implements TransactionService {
                 .status(200)
                 .mensagem("Produto retornado em progresso.")
                 .build();
-    }
+    }   
+   
 
     @Override
     public Resposta getAllTransactions(String filter) { 

@@ -10,6 +10,6 @@ import com.nexdom.estoque_backend.model.Produto;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	
-	List<Produto> findByNameContainingOrDescriptionContaining(String nomeProduto, String descricao);
+	List<Produto> findByNameContainingOrDescriptionContaining(String name, String description);
 
 }

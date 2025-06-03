@@ -32,10 +32,9 @@ public class ProdutoServiceImpl implements ProdutoService {
 	private final ModelMapper modelMapper;
 	private final TipoProdutoRepository tipoProdutoRepository;
 	
-	private static final String IMAGE_DIRECTORY = System.getProperty("user.dir") + "/imagens_produto/";	
-		
-	 //AFTER YOUR FRONTEND IS SETUP CHANGE THE IMAGE DIRECTORY TO THE FRONTEND YOU ARE USING
-    private static final String IMAGE_DIRECTORY_2 = "C:\\Users\\lira\\imagens-estoque\\produtos";
+	//private static final String IMAGE_DIRECTORY = System.getProperty("user.dir") + "/imagens_produto/";
+	
+	private static final String IMAGE_DIRECTORY_2 = "C:\\Users\\lira\\imagens-estoque";
 
     @Override
     public Resposta salvarProduto(ProdutoDTO produtoDTO, MultipartFile imageFile) {
@@ -45,7 +44,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         //map our dto to produto entity
         Produto produtoToSave = Produto.builder()
-                .name(produtoDTO.getName())                
+                .name(produtoDTO.getName())          
                 .preco(produtoDTO.getPreco())
                 .qtdEstoque(produtoDTO.getQtdEstoque())
                 .description(produtoDTO.getDescription())
@@ -53,8 +52,7 @@ public class ProdutoServiceImpl implements ProdutoService {
                 .build();
 
         if (imageFile != null && !imageFile.isEmpty()) {
-            log.info("Image file exist");
-//			            String imagePath = saveImage(imageFile); //use this when you haven't setup your frontend
+            
             String imagePath = saveImage2(imageFile); //use this when you ave set up your frontend locally but haven't deployed to production
 
             System.out.println("IMAGE URL IS: " + imagePath);
@@ -182,41 +180,38 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 
     //this save to the root of your project
-    private String saveImage(MultipartFile imageFile) {
-        //validate image and check if it is greater than 1GIB
-        if (!imageFile.getContentType().startsWith("image/") || imageFile.getSize() > 1024 * 1024 * 1024) {
-            throw new IllegalArgumentException("Permitidas imagens abaixo de 500 mega apenas");
-        }
-
-        //create the directory if it doesn't exist
-        File directory = new File(IMAGE_DIRECTORY);
-
-        if (!directory.exists()) {
-            directory.mkdir();
-            log.info("Directory was created");
-        }
-        //generate unique file name for the image
-        String uniqueFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-
-        //Get the absolute path of the image
-        String imagePath = IMAGE_DIRECTORY + uniqueFileName;
-
-        try {
-            File destinationFile = new File(imagePath);
-            imageFile.transferTo(destinationFile); //we are writing the image to this folder
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Error saving Image: " + e.getMessage());
-        }
-        return imagePath;
-
-    }
-
-    //This saved image to the public folder in your frontend
-    //Use this if your have setup your frontend
+	/*
+	 * private String saveImage(MultipartFile imageFile) { //validate image and
+	 * check if it is greater than 1GIB if
+	 * (!imageFile.getContentType().startsWith("image/") || imageFile.getSize() >
+	 * 1024 * 1024 * 1024) { throw new
+	 * IllegalArgumentException("Permitidas imagens abaixo de 500 mega apenas"); }
+	 * 
+	 * //create the directory if it doesn't exist File directory = new
+	 * File(IMAGE_DIRECTORY);
+	 * 
+	 * if (!directory.exists()) { directory.mkdir();
+	 * log.info("Directory was created"); } //generate unique file name for the
+	 * image String uniqueFileName = UUID.randomUUID() + "_" +
+	 * imageFile.getOriginalFilename();
+	 * 
+	 * //Get the absolute path of the image String imagePath = IMAGE_DIRECTORY +
+	 * uniqueFileName;
+	 * 
+	 * 
+	 * try { File destinationFile = new File(imagePath);
+	 * imageFile.transferTo(destinationFile); //we are writing the image to this
+	 * folder } catch (Exception e) { throw new
+	 * IllegalArgumentException("Erro ao salvar imagem: " + e.getMessage()); }
+	 * return imagePath;
+	 * 
+	 * }
+	 */    
+   
     private String saveImage2(MultipartFile imageFile) {
         //validate image and check if it is greater than 1GIB
         if (!imageFile.getContentType().startsWith("image/") || imageFile.getSize() > 1024 * 1024 * 1024) {
-            throw new IllegalArgumentException("Only image files under 1GIG is allowed");
+            throw new IllegalArgumentException("Permitidas apenas imagens abaixo de 1 Giga");
         }
 
         //create the directory if it doesn't exist
@@ -224,7 +219,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         if (!directory.exists()) {
             directory.mkdir();
-            log.info("Directory was created");
+            log.info("O diretório foi criado");
         }
         //generate unique file name for the image
         String uniqueFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();

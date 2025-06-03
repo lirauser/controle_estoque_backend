@@ -15,7 +15,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionDTO {	
 	
-	private long id;
+	private Long id;
 	
 	private Integer totalProdutos;
 	

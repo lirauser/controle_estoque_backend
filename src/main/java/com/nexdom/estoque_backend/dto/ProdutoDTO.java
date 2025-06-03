@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProdutoDTO {			
 		
-		private long id;
+		private Long id;
 		
 		private Long tipoProdutoId;
 		private Long produtoId;
