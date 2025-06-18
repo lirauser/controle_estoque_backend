@@ -29,7 +29,6 @@ public class TipoProdutoController {
         return ResponseEntity.ok(tipoProdutoService.createTipoProduto(tipoProdutoDTO));
     }
 
-
     @GetMapping("/all")
     public ResponseEntity<Resposta> getAllCategories() {
         return ResponseEntity.ok(tipoProdutoService.getAllTipoProduto());
