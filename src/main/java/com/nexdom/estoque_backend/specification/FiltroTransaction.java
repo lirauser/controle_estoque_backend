@@ -27,8 +27,7 @@ public class FiltroTransaction {
             List<Predicate> predicates = new ArrayList<>();
 
             // Check transactions fields
-            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("descricao")), searchPattern));
-            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("nota")), searchPattern));
+            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("descricao")), searchPattern));           
             predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("status").as(String.class)), searchPattern));
             predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("tipoMovimentacao").as(String.class)), searchPattern));           
 
@@ -61,7 +60,7 @@ public class FiltroTransaction {
     }
 
 
-    // New method for filtering transactions by month and year
+    // Novo método para filtrar transações por mês e ano
     public static Specification<Transaction> byMonthAndYear(int month, int year) {
         return (root, query, criteriaBuilder) -> {
             // Use the month and year functions on the createdAt date field
@@ -75,5 +74,6 @@ public class FiltroTransaction {
             // Combine the month and year predicates
             return criteriaBuilder.and(monthPredicate, yearPredicate);
         };
-    }
+    }    
+    
 }

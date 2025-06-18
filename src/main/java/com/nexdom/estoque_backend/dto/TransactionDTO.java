@@ -21,12 +21,11 @@ public class TransactionDTO {
 	
 	private BigDecimal totalPreco;	
 	
-	private TipoMovimentacao tipoMovimentacao;	
+	private TipoMovimentacao tipoMovimentacao;
 	
 	private TransactionStatus status;
 	
-	private String descricao;
-	private String nota;
+	private String descricao;	
 	
 	private LocalDateTime criadoEm;
 	private LocalDateTime atualizadoEm;	

@@ -1,15 +1,12 @@
 package com.nexdom.estoque_backend.services.impl;
 
-import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.nexdom.estoque_backend.dto.ProdutoDTO;
 import com.nexdom.estoque_backend.dto.Resposta;
@@ -31,33 +28,22 @@ public class ProdutoServiceImpl implements ProdutoService {
 	private final ProdutoRepository produtoRepository;
 	private final ModelMapper modelMapper;
 	private final TipoProdutoRepository tipoProdutoRepository;
-	
-	//private static final String IMAGE_DIRECTORY = System.getProperty("user.dir") + "/imagens_produto/";
-	
-	private static final String IMAGE_DIRECTORY_2 = "C:\\Users\\lira\\imagens-estoque";
 
     @Override
-    public Resposta salvarProduto(ProdutoDTO produtoDTO, MultipartFile imageFile) {
+    public Resposta salvarProduto(ProdutoDTO produtoDTO) {
 
         TipoProduto tipoProduto = tipoProdutoRepository.findById(produtoDTO.getTipoProdutoId())
                 .orElseThrow(() -> new NotFoundException("TipoProduto não encontrado."));
 
-        //map our dto to produto entity
+        //mapeia o DTO para a entidade Produto
         Produto produtoToSave = Produto.builder()
+        		.codigo(produtoDTO.getCodigo())
                 .name(produtoDTO.getName())          
                 .preco(produtoDTO.getPreco())
                 .qtdEstoque(produtoDTO.getQtdEstoque())
                 .description(produtoDTO.getDescription())
                 .tipoProduto(tipoProduto)
-                .build();
-
-        if (imageFile != null && !imageFile.isEmpty()) {
-            
-            String imagePath = saveImage2(imageFile); //use this when you ave set up your frontend locally but haven't deployed to production
-
-            System.out.println("IMAGE URL IS: " + imagePath);
-            produtoToSave.setImagemUrl(imagePath);
-        }
+                .build();       
 
         //save the produto entity
         produtoRepository.save(produtoToSave);
@@ -69,29 +55,24 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public Resposta atualizarProduto(ProdutoDTO produtoDTO, MultipartFile imageFile) {
+    public Resposta atualizarProduto(ProdutoDTO produtoDTO) {
 
-        //check if produto exisit
+        //Verifica se um produto existe
         Produto existingProduto = produtoRepository.findById(produtoDTO.getProdutoId())
-                .orElseThrow(() -> new NotFoundException("Produto Not Found"));
+                .orElseThrow(() -> new NotFoundException("Produto não encontrado"));     
 
-        //check if image is associated with the produto to update and upload
-        if (imageFile != null && !imageFile.isEmpty()) {
-//			            String imagePath = saveImage(imageFile); //use this when you haven't setup your frontend
-            String imagePath = saveImage2(imageFile); //use this when you ave set up your frontend locally but haven't deployed to produiction
-
-            System.out.println("IMAGE URL IS: " + imagePath);
-            existingProduto.setImagemUrl(imagePath);
-        }
-
-        //check if tipoProduto is to be chanegd for the produtos
+        //verifica se tipoProduto será mudado para os produtos
         if (produtoDTO.getTipoProdutoId() != null && produtoDTO.getTipoProdutoId() > 0) {
             TipoProduto tipoProduto = tipoProdutoRepository.findById(produtoDTO.getTipoProdutoId())
-                    .orElseThrow(() -> new NotFoundException("TipoProduto Not Found"));
+                    .orElseThrow(() -> new NotFoundException("TipoProduto não encontrado"));
             existingProduto.setTipoProduto(tipoProduto);
         }
 
-        //check if produto fields is to be changed and update
+        //verifica se os campos do produto serão mudados e atualizados
+        if (produtoDTO.getCodigo() != null && !produtoDTO.getCodigo().isBlank()) {
+        	existingProduto.setCodigo(produtoDTO.getCodigo());
+        }
+        
         if (produtoDTO.getName() != null && !produtoDTO.getName().isBlank()) {
             existingProduto.setName(produtoDTO.getName());
         }       
@@ -144,6 +125,19 @@ public class ProdutoServiceImpl implements ProdutoService {
                 .produto(modelMapper.map(produto, ProdutoDTO.class))
                 .build();
     }
+    
+    @Override
+    public Resposta getProdutoByTipo(Long tipoId) {
+
+    	Produto produto = produtoRepository.findById(tipoId)
+                .orElseThrow(() -> new NotFoundException("Produto não encontrado."));
+
+        return Resposta.builder()
+                .status(200)
+                .mensagem("sucesso")
+                .produto(modelMapper.map(produto, ProdutoDTO.class))
+                .build();
+    }
 
     @Override
     public Resposta deleteProduto(Long id) {
@@ -176,65 +170,7 @@ public class ProdutoServiceImpl implements ProdutoService {
                 .mensagem("success")
                 .produtos(produtoDTOList)
                 .build();
-    }
-
-
-    //this save to the root of your project
-	/*
-	 * private String saveImage(MultipartFile imageFile) { //validate image and
-	 * check if it is greater than 1GIB if
-	 * (!imageFile.getContentType().startsWith("image/") || imageFile.getSize() >
-	 * 1024 * 1024 * 1024) { throw new
-	 * IllegalArgumentException("Permitidas imagens abaixo de 500 mega apenas"); }
-	 * 
-	 * //create the directory if it doesn't exist File directory = new
-	 * File(IMAGE_DIRECTORY);
-	 * 
-	 * if (!directory.exists()) { directory.mkdir();
-	 * log.info("Directory was created"); } //generate unique file name for the
-	 * image String uniqueFileName = UUID.randomUUID() + "_" +
-	 * imageFile.getOriginalFilename();
-	 * 
-	 * //Get the absolute path of the image String imagePath = IMAGE_DIRECTORY +
-	 * uniqueFileName;
-	 * 
-	 * 
-	 * try { File destinationFile = new File(imagePath);
-	 * imageFile.transferTo(destinationFile); //we are writing the image to this
-	 * folder } catch (Exception e) { throw new
-	 * IllegalArgumentException("Erro ao salvar imagem: " + e.getMessage()); }
-	 * return imagePath;
-	 * 
-	 * }
-	 */    
+    }  
    
-    private String saveImage2(MultipartFile imageFile) {
-        //validate image and check if it is greater than 1GIB
-        if (!imageFile.getContentType().startsWith("image/") || imageFile.getSize() > 1024 * 1024 * 1024) {
-            throw new IllegalArgumentException("Permitidas apenas imagens abaixo de 1 Giga");
-        }
-
-        //create the directory if it doesn't exist
-        File directory = new File(IMAGE_DIRECTORY_2);
-
-        if (!directory.exists()) {
-            directory.mkdir();
-            log.info("O diretório foi criado");
-        }
-        //generate unique file name for the image
-        String uniqueFileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-
-        //Get the absolute path of the image
-        String imagePath = IMAGE_DIRECTORY_2 + uniqueFileName;
-
-        try {
-            File destinationFile = new File(imagePath);
-            imageFile.transferTo(destinationFile); //we are writing the image to this folder
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Erro ao salvar imagem: " + e.getMessage());
-        }
-        return "produtos/"+uniqueFileName;
-
-
-    }
+    
   }

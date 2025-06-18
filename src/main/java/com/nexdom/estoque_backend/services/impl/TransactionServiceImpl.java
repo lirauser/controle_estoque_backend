@@ -66,8 +66,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .fornecedor(fornecedor)
                 .totalProdutos(qtd)
                 .totalPreco(produto.getPreco().multiply(BigDecimal.valueOf(qtd)))
-                .descricao(transactionRequest.getDescricao())
-                .nota(transactionRequest.getNota())
+                .descricao(transactionRequest.getDescricao())               
                 .build();
 
         transactionRepository.save(transaction);
@@ -99,8 +98,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .produto(produto)                
                 .totalProdutos(quantity)
                 .totalPreco(produto.getPreco().multiply(BigDecimal.valueOf(quantity)))
-                .descricao(transactionRequest.getDescricao())
-                .nota(transactionRequest.getNota())
+                .descricao(transactionRequest.getDescricao())                
                 .build();
 
         transactionRepository.save(transaction);
@@ -139,8 +137,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .produto(produto)              
                 .totalProdutos(quantity)
                 .totalPreco(BigDecimal.ZERO)
-                .descricao(transactionRequest.getDescricao())
-                .nota(transactionRequest.getNota())
+                .descricao(transactionRequest.getDescricao())               
                 .build();
 
         transactionRepository.save(transaction);

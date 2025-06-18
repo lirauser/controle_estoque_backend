@@ -14,8 +14,6 @@ public class TransactionRequest {
 	
 	private Long fornecedorId;
 	
-	private String descricao;
-	
-	private String nota;	
+	private String descricao;	
 
 }

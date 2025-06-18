@@ -14,7 +14,7 @@ import lombok.Data;
 public class Resposta {	
 	
 	private int status;
-	private String mensagem;			
+	private String mensagem;		
 	
 	private FornecedorDTO fornecedor;
 	private List<FornecedorDTO> fornecedores;

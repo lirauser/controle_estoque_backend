@@ -47,8 +47,7 @@ public class Transaction {
 	@Enumerated(EnumType.STRING)
 	private TransactionStatus status; //pendente, concluído, processando
 	
-	private String descricao;
-	private String nota;
+	private String descricao;	
 	
 	@Column(name = "criado_em")
 	private final LocalDateTime criadoEm = LocalDateTime.now();
@@ -71,8 +70,7 @@ public class Transaction {
 				", totalPreco=" + totalPreco +
 				", tipoMovimentacao=" + tipoMovimentacao + 
 				", status=" + status + 
-				", descricao=" + descricao + 
-				", nota=" + nota + 
+				", descricao=" + descricao + 				
 				", criadoEm=" + criadoEm + 
 				", atualizadoEm=" + atualizadoEm + "]";
 	}

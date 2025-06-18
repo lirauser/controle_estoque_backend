@@ -29,7 +29,10 @@ public class Produto {
 		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private Long id;	
+	private Long id;
+	
+	@NotBlank(message = "Código é obrigatório.")
+	private String codigo;
 	
 	@NotBlank(message = "Produto é obrigatório.")
 	private String name;	
@@ -49,23 +52,20 @@ public class Produto {
 	@Column(name = "criado_em")
 	private final LocalDateTime criadoEm = LocalDateTime.now();
 	
-	@Column(name = "imagem_url")
-	private String imagemUrl;
-	
 	@ManyToOne
 	@JoinColumn(name = "tipo_id")
 	private TipoProduto tipoProduto;
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + 
+		return "Produto [id=" + id +
+				", codigo" + codigo + 
 				", name=" + name + 				
 				", preco=" + preco + 
 				", qtdEstoque=" + qtdEstoque + 
 				", description=" + description + 
 				", dataExpiracao=" + dataExpiracao + 
-				", criadoEm=" + criadoEm + 
-				", imagemUrl=" + imagemUrl + "]";
+				", criadoEm=" + criadoEm + "]";
 	}	
 
 }

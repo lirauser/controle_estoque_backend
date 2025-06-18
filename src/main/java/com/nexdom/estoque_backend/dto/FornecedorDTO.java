@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FornecedorDTO {
 			
-		private Long id;	
+		private Long id;
 		
 		@NotBlank(message = "Nome do fornecedor é obrigatório.")
 		private String nomeFornecedor;	

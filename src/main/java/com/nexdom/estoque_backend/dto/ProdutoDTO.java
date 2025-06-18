@@ -23,6 +23,8 @@ public class ProdutoDTO {
 		private Long produtoId;
 		private Long fornecedorId;
 		
+		private String codigo;
+		
 		private String name;		
 		
 		private BigDecimal preco;		

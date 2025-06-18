@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.nexdom.estoque_backend.dto.ProdutoDTO;
 import com.nexdom.estoque_backend.dto.Resposta;
@@ -27,8 +26,8 @@ public class ProdutoController {
 	private final ProdutoService produtoService;
 
     @PostMapping("/add")
-    public ResponseEntity<Resposta> saveProduto(
-            @RequestParam("imageFile") MultipartFile imageFile,
+    public ResponseEntity<Resposta> saveProduto(            
+            @RequestParam("codigo") String codigo,
             @RequestParam("name") String name,            
             @RequestParam("preco") BigDecimal preco,
             @RequestParam("qtdEstoque") Integer qtdEstoque,
@@ -36,19 +35,20 @@ public class ProdutoController {
             @RequestParam(value = "description", required = false) String description
     ) {
         ProdutoDTO produtoDTO = new ProdutoDTO();
+        produtoDTO.setCodigo(codigo);
         produtoDTO.setName(name);        
         produtoDTO.setPreco(preco);
         produtoDTO.setQtdEstoque(qtdEstoque);
         produtoDTO.setTipoProdutoId(tipoProdutoId);
         produtoDTO.setDescription(description);
 
-        return ResponseEntity.ok(produtoService.salvarProduto(produtoDTO, imageFile));
+        return ResponseEntity.ok(produtoService.salvarProduto(produtoDTO));
 
     }
 
     @PutMapping("/update")    
-    public ResponseEntity<Resposta> updateProduto(
-            @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
+    public ResponseEntity<Resposta> updateProduto(           
+            @RequestParam(value = "codigo", required = false) String codigo,
             @RequestParam(value = "name", required = false) String name,            
             @RequestParam(value = "preco", required = false) BigDecimal preco,
             @RequestParam(value = "qtdEstoque", required = false) Integer qtdEstoque,
@@ -57,14 +57,15 @@ public class ProdutoController {
             @RequestParam("produtoId") Long produtoId
     ) {
         ProdutoDTO produtoDTO = new ProdutoDTO();
-        produtoDTO.setName(name);        
+        produtoDTO.setName(name);
+        produtoDTO.setCodigo(codigo);
         produtoDTO.setPreco(preco);
         produtoDTO.setProdutoId(produtoId);
         produtoDTO.setQtdEstoque(qtdEstoque);
         produtoDTO.setTipoProdutoId(tipoProdutoId);
         produtoDTO.setDescription(description);
 
-        return ResponseEntity.ok(produtoService.atualizarProduto(produtoDTO, imageFile));
+        return ResponseEntity.ok(produtoService.atualizarProduto(produtoDTO));
     }
 
     @GetMapping("/all")
@@ -75,7 +76,7 @@ public class ProdutoController {
     @GetMapping("/{id}")
     public ResponseEntity<Resposta> getProdutoById(@PathVariable Long id) {
         return ResponseEntity.ok(produtoService.getProdutoById(id));
-    }
+    }    
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Resposta> deleteProduto(@PathVariable Long id) {
